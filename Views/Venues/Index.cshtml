@@ -1,0 +1,56 @@
+@model IEnumerable<EventEase.Models.Venue>
+@{
+    ViewData["Title"] = "Venues";
+}
+
+<div class="container mt-4">
+    <h2>🏟️ Venues</h2>
+
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div class="alert alert-danger">@TempData["ErrorMessage"]</div>
+    }
+
+    <a asp-action="Create" class="btn btn-success mb-3">+ Add New Venue</a>
+
+    <table class="table table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>Venue Name</th>
+                <th>Location</th>
+                <th>Capacity</th>
+                <th>Image</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var venue in Model)
+            {
+                <tr>
+                    <td>@venue.VenueName</td>
+                    <td>@venue.Location</td>
+                    <td>@venue.Capacity</td>
+                    <td>
+                        @if (venue.ImageUrl != null)
+                        {
+                            <img src="@venue.ImageUrl" width="80" height="60"
+                                 style="object-fit:cover;" />
+                        }
+                        else
+                        {
+                            <span class="text-muted">No image</span>
+                        }
+                    </td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@venue.VenueId"
+                           class="btn btn-sm btn-info">Details</a>
+                        <a asp-action="Edit" asp-route-id="@venue.VenueId"
+                           class="btn btn-sm btn-warning">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@venue.VenueId"
+                           class="btn btn-sm btn-danger">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

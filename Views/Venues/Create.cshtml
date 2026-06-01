@@ -1,0 +1,39 @@
+@model EventEase.Models.Venue
+@{
+    ViewData["Title"] = "Create Venue";
+}
+
+<div class="container mt-4">
+    <h2>🏟️ Add New Venue</h2>
+
+    <form asp-action="Create" enctype="multipart/form-data">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="mb-3">
+            <label asp-for="VenueName" class="form-label"></label>
+            <input asp-for="VenueName" class="form-control" />
+            <span asp-validation-for="VenueName" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Location" class="form-label"></label>
+            <input asp-for="Location" class="form-control" />
+            <span asp-validation-for="Location" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Capacity" class="form-label"></label>
+            <input asp-for="Capacity" class="form-control" />
+            <span asp-validation-for="Capacity" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label class="form-label">Upload Image</label>
+            <input type="file" name="imageFile" class="form-control"
+                   accept="image/*" />
+        </div>
+
+        <button type="submit" class="btn btn-success">Create Venue</button>
+        <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
